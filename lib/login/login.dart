@@ -8,20 +8,30 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const FlutterLogo(size: 20),
-            LoginButton(
-              icon: FontAwesomeIcons.userNinja,
-              text: 'Continue as Guest',
-              loginMethod: AuthService().anonLogin,
-              color: Colors.purple,
-            ),
-          ],
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const FlutterLogo(size: 100),
+              const SizedBox(height: 40),
+              LoginButton(
+                icon: FontAwesomeIcons.userNinja,
+                text: 'Continue as Guest',
+                loginMethod: AuthService().anonLogin,
+                color: Colors.purple,
+              ),
+              const SizedBox(height: 20),
+              LoginButton(
+                icon: FontAwesomeIcons.google,
+                text: 'Sign in with Google',
+                loginMethod: AuthService().googleLogin,
+                color: Colors.blue,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -44,13 +54,16 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10),
+    return SizedBox(
+      width: double.infinity,
       child: ElevatedButton.icon(
         icon: Icon(icon, color: Colors.white, size: 20),
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(16),
           backgroundColor: color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
         onPressed: loginMethod,
         label: Text(text, textAlign: TextAlign.center),

@@ -13,12 +13,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile Screen'),  
+        title: const Text('Profile Screen'),
       ),
-      body: ElevatedButton(onPressed : ()async {
-        await AuthService().signOut();
-        Navigator.pushNamedAndRemoveUntil(context, '/');
-      }, child: child),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () async {
+            await AuthService().signOut();
+            Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+          },
+          child: const Text('Sign Out'),
+        ),
+      ),
     );
   }
 }
