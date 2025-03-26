@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String assetsImg = 'appicon.png';
   static const String avatarsNandini = 'assets/avatars/nandini.svg';
   static const String avatarsSairaj = 'assets/avatars/sairaj.svg';
   static const String avatarsYash = 'assets/avatars/yash.svg';

@@ -15,7 +15,21 @@ class LoginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const FlutterLogo(size: 100),
+              // Custom App Logo
+              Image.asset(
+                'assets/appicon.png',
+                width: 120,
+                height: 120,
+              ),
+              const SizedBox(height: 20),
+              // App Name
+              const Text(
+                "English Vocab Builder",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               const SizedBox(height: 40),
               LoginButton(
                 icon: FontAwesomeIcons.userNinja,
