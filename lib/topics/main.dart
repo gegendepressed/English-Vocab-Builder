@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'QuizApp',
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',  // You can set an initial route if you want (this is optional)
       routes: appRoutes,
       theme: appTheme,
