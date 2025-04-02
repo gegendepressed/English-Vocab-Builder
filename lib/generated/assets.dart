@@ -2,10 +2,12 @@
 class Assets {
   Assets._();
 
-  static const String assetsImg = 'appicon.png';
+  static const String assetsA = 'assets/A.java';
+  static const String assetsAppicon = 'assets/appicon.png';
   static const String avatarsNandini = 'assets/avatars/nandini.svg';
   static const String avatarsSairaj = 'assets/avatars/sairaj.svg';
   static const String avatarsYash = 'assets/avatars/yash.svg';
   static const String coversWordnet = 'assets/covers/wordnet.png';
+  static const String quizappAssetsAppicon = 'assets/appicon.png';
 
 }

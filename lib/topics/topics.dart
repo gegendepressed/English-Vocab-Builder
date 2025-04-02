@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/services/firestore.dart';
 import 'package:quizapp/shared/bottom_nav.dart';
+import 'package:quizapp/topics/drawer.dart';
 import 'package:quizapp/topics/topic_item.dart';
 
 class TopicsScreen extends StatelessWidget {
@@ -26,6 +27,8 @@ class TopicsScreen extends StatelessWidget {
             backgroundColor: Colors.indigo,
             title: const Text('Topics'),
           ),
+
+          drawer: TopicDrawer(topics:topics),
           body: GridView.count(
             primary: false,
             padding: const EdgeInsets.all(20),
