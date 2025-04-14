@@ -1,0 +1,49 @@
+id: noun
+img: noun.png
+title: Noun
+quizzes:
+  - title: Easy 1
+    description: Synonym questions - Easy Set 1
+    id: noun-easy1
+  - title: Easy 2
+    description: Synonym questions - Easy Set 2
+    id: noun-easy2
+  - title: Easy 3
+    description: Synonym questions - Easy Set 3
+    id: noun-easy3
+  - title: Easy 4
+    description: Synonym questions - Easy Set 4
+    id: noun-easy4
+  - title: Easy 5
+    description: Synonym questions - Easy Set 5
+    id: noun-easy5
+  - title: Medium 1
+    description: Synonym questions - Medium Set 1
+    id: noun-medium1
+  - title: Medium 2
+    description: Synonym questions - Medium Set 2
+    id: noun-medium2
+  - title: Medium 3
+    description: Synonym questions - Medium Set 3
+    id: noun-medium3
+  - title: Medium 4
+    description: Synonym questions - Medium Set 4
+    id: noun-medium4
+  - title: Medium 5
+    description: Synonym questions - Medium Set 5
+    id: noun-medium5
+  - title: Hard 1
+    description: Synonym questions - Hard Set 1
+    id: noun-hard1
+  - title: Hard 2
+    description: Synonym questions - Hard Set 2
+    id: noun-hard2
+  - title: Hard 3
+    description: Synonym questions - Hard Set 3
+    id: noun-hard3
+  - title: Hard 4
+    description: Synonym questions - Hard Set 4
+    id: noun-hard4
+  - title: Hard 5
+    description: Synonym questions - Hard Set 5
+    id: noun-hard5

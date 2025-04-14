@@ -1,0 +1,1 @@
+/home/tablaplayer/Downloads/Parts of Speech Adjectives Presentation Colorful in Cute Style/adjective.png

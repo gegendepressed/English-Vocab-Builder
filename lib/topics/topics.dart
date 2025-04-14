@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quizapp/services/firestore.dart';
-import 'package:quizapp/shared/bottom_nav.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quizapp/services/services.dart';
+import 'package:quizapp/shared/shared.dart';
 import 'package:quizapp/topics/drawer.dart';
 import 'package:quizapp/topics/topic_item.dart';
 
@@ -9,35 +10,45 @@ class TopicsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<List<Topic>>(
       future: FirestoreService().getTopics(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const LoadingScreen();
         } else if (snapshot.hasError) {
-          return const Center(child: Text('Error loading topics'));
-        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Center(child: Text('No topics available'));
+          return Center(
+            child: ErrorMessage(message: snapshot.error.toString()),
+          );
+        } else if (snapshot.hasData) {
+          var topics = snapshot.data!;
+
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.deepPurple,
+              title: const Text('Topics'),
+              actions: [
+                IconButton(
+                  icon: Icon(
+                    FontAwesomeIcons.circleUser,
+                    color: Colors.pink[200],
+                  ),
+                  onPressed: () => Navigator.pushNamed(context, '/profile'),
+                )
+              ],
+            ),
+            drawer: TopicDrawer(topics: topics),
+            body: GridView.count(
+              primary: false,
+              padding: const EdgeInsets.all(20.0),
+              crossAxisSpacing: 10.0,
+              crossAxisCount: 2,
+              children: topics.map((topic) => TopicItem(topic: topic)).toList(),
+            ),
+            bottomNavigationBar: const BottomNavBar(),
+          );
+        } else {
+          return const Text('No topics found in Firestore. Check database');
         }
-
-        final topics = snapshot.data!;
-
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.indigo,
-            title: const Text('Topics'),
-          ),
-
-          drawer: TopicDrawer(topics:topics),
-          body: GridView.count(
-            primary: false,
-            padding: const EdgeInsets.all(20),
-            crossAxisSpacing: 10,
-            crossAxisCount: 2,
-            children: topics.map((topic) => TopicItem(topic : topic)).toList(),
-          ),
-          bottomNavigationBar: const BottomNav(),
-        );
       },
     );
   }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:quizapp/services/models.dart';
 import 'package:quizapp/shared/progress_bar.dart';
-import 'package:quizapp/topics/topics.dart';
-import '../services/models.dart';
+import 'package:quizapp/topics/drawer.dart';
 
 class TopicItem extends StatelessWidget {
   final Topic topic;
@@ -17,27 +16,31 @@ class TopicItem extends StatelessWidget {
         child: InkWell(
           onTap: () {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (BuildContext context) => TopicScreen(topic: topic)) // ✅ Fixed semicolon & class name
+              MaterialPageRoute(
+                builder: (BuildContext context) => TopicScreen(topic: topic),
+              ),
             );
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
                 flex: 3,
-                child: Image.asset(
-                  'assets/covers/${topic.img}',
-                  fit: BoxFit.contain,
+                child: SizedBox(
+                  child: Image.asset(
+                    'assets/covers/${topic.img}',
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
               Flexible(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Text(
                     topic.title,
                     style: const TextStyle(
-                      height: 2.5,
+                      height: 1.5,
                       fontWeight: FontWeight.bold,
                     ),
                     overflow: TextOverflow.fade,
@@ -56,36 +59,28 @@ class TopicItem extends StatelessWidget {
 
 class TopicScreen extends StatelessWidget {
   final Topic topic;
-  const TopicScreen({super.key, required this.topic}); // ✅ Added required parameter
+
+  const TopicScreen({super.key, required this.topic});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.transparent,
       ),
-      body: ListView(
-        children: [
-          Hero(
-            tag: topic.img,
-            child: Image.asset('assets/covers/${topic.img}'),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              topic.title,
-              style: TextStyle(
-                fontSize: 20,
-                fontFamily: GoogleFonts.nunito().fontFamily,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ),
+      body: ListView(children: [
+        Hero(
+          tag: topic.img,
+          child: Image.asset('assets/covers/${topic.img}',
+              width: MediaQuery.of(context).size.width),
+        ),
+        Text(
+          topic.title,
+          style: const TextStyle(
+              height: 2, fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        QuizList(topic: topic)
+      ]),
     );
   }
 }

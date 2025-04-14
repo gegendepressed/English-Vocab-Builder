@@ -8,65 +8,49 @@ import 'package:quizapp/shared/loading.dart';
 import 'package:quizapp/shared/progress_bar.dart';
 
 class QuizScreen extends StatelessWidget {
-  const QuizScreen({super.key, required this.quizId, required this.topic, required this.category, required this.difficulty});
-
-  final String quizId; // ID for the quiz (e.g., medium_8.yaml)
-  final String topic; // e.g., 'synonyms'
-  final String category; // e.g., 'verb', 'adjective'
-  final String difficulty; // e.g., 'easy', 'medium', 'hard'
+  const QuizScreen({super.key, required this.quizId});
+  final String quizId;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => QuizState(),
-      child: FutureBuilder<List<Quiz>>(
-        future: FirestoreService().getQuiz(topic, category, difficulty, quizId), // This returns a List<Quiz>
+      child: FutureBuilder<Quiz>(
+        future: FirestoreService().getQuiz(quizId),
         builder: (context, snapshot) {
           var state = Provider.of<QuizState>(context);
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Loading(); // Wait for quiz data to load
-          }
-          if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}')); // Handle error
-          }
+          if (!snapshot.hasData || snapshot.hasError) {
+            return const Loader();
+          } else {
+            var quiz = snapshot.data!;
 
-          // Extract the desired quiz from the list (assuming quizId is unique and exists)
-          var quizzes = snapshot.data ?? [];
-          var quiz = quizzes.firstWhere(
-                (q) => q.id == quizId,
-            orElse: () => throw Exception('Quiz not found'),
-          );
-
-          if (quiz == null) {
-            return Center(child: Text('Quiz not found'));
-          }
-
-          return Scaffold(
-            appBar: AppBar(
-              title: AnimatedProgressbar(value: state.progress),
-              leading: IconButton(
-                icon: const Icon(FontAwesomeIcons.xmark),
-                onPressed: () => Navigator.pop(context),
+            return Scaffold(
+              appBar: AppBar(
+                title: AnimatedProgressbar(value: state.progress),
+                leading: IconButton(
+                  icon: const Icon(FontAwesomeIcons.xmark),
+                  onPressed: () => Navigator.pop(context),
+                ),
               ),
-            ),
-            body: PageView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              controller: state.controller,
-              onPageChanged: (int idx) =>
-              state.progress = (idx / (quiz.questions.length + 1)),
-              itemBuilder: (BuildContext context, int idx) {
-                if (idx == 0) {
-                  return StartPage(quiz: quiz);
-                } else if (idx == quiz.questions.length + 1) {
-                  return CongratsPage(quiz: quiz);
-                } else {
-                  return QuestionPage(question: quiz.questions[idx - 1]);
-                }
-              },
-            ),
-          );
+              body: PageView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                controller: state.controller,
+                onPageChanged: (int idx) =>
+                state.progress = (idx / (quiz.questions.length + 1)),
+                itemBuilder: (BuildContext context, int idx) {
+                  if (idx == 0) {
+                    return StartPage(quiz: quiz);
+                  } else if (idx == quiz.questions.length + 1) {
+                    return CongratsPage(quiz: quiz);
+                  } else {
+                    return QuestionPage(question: quiz.questions[idx - 1]);
+                  }
+                },
+              ),
+            );
+          }
         },
       ),
     );
@@ -89,7 +73,7 @@ class StartPage extends StatelessWidget {
           Text(quiz.title, style: Theme.of(context).textTheme.titleMedium),
           const Divider(),
           Expanded(child: Text(quiz.description)),
-          OverflowBar(
+          ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
               ElevatedButton.icon(
@@ -227,7 +211,8 @@ class QuestionPage extends StatelessWidget {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: correct ? Colors.green : Colors.red),
+                  backgroundColor: correct ? Colors.green : Colors.red,
+                ),
                 child: Text(
                   correct ? 'Onward!' : 'Try Again',
                   style: const TextStyle(

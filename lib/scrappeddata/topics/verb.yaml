@@ -1,0 +1,49 @@
+id: verb
+img: verb.png
+title: Verb
+quizzes:
+  - title: Easy 1
+    description: Synonym questions - Easy Set 1
+    id: verb-easy1
+  - title: Easy 2
+    description: Synonym questions - Easy Set 2
+    id: verb-easy2
+  - title: Easy 3
+    description: Synonym questions - Easy Set 3
+    id: verb-easy3
+  - title: Easy 4
+    description: Synonym questions - Easy Set 4
+    id: verb-easy4
+  - title: Easy 5
+    description: Synonym questions - Easy Set 5
+    id: verb-easy5
+  - title: Medium 1
+    description: Synonym questions - Medium Set 1
+    id: verb-medium1
+  - title: Medium 2
+    description: Synonym questions - Medium Set 2
+    id: verb-medium2
+  - title: Medium 3
+    description: Synonym questions - Medium Set 3
+    id: verb-medium3
+  - title: Medium 4
+    description: Synonym questions - Medium Set 4
+    id: verb-medium4
+  - title: Medium 5
+    description: Synonym questions - Medium Set 5
+    id: verb-medium5
+  - title: Hard 1
+    description: Synonym questions - Hard Set 1
+    id: verb-hard1
+  - title: Hard 2
+    description: Synonym questions - Hard Set 2
+    id: verb-hard2
+  - title: Hard 3
+    description: Synonym questions - Hard Set 3
+    id: verb-hard3
+  - title: Hard 4
+    description: Synonym questions - Hard Set 4
+    id: verb-hard4
+  - title: Hard 5
+    description: Synonym questions - Hard Set 5
+    id: verb-hard5
