@@ -5,7 +5,15 @@ class Loader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CircularProgressIndicator(); // Keep it minimal
+    return SizedBox(
+      height: 60,
+      width: 60,
+      child: CircularProgressIndicator(
+        strokeWidth: 6,
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.blueAccent),
+        backgroundColor: Colors.transparent,
+      ),
+    );
   }
 }
 
@@ -14,9 +22,17 @@ class LoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
-        child: Loader(), // Already centered by Center widget
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.black87,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Loader(),
+        ),
       ),
     );
   }

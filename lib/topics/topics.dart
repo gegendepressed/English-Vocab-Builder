@@ -24,8 +24,12 @@ class TopicsScreen extends StatelessWidget {
 
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.deepPurple,
-              title: const Text('Topics'),
+              backgroundColor: Colors.purple.shade700,
+              title: const Text(
+                'Topics',
+                style: TextStyle(color: Colors.white),
+              ),
+              iconTheme: const IconThemeData(color: Colors.white),
               actions: [
                 IconButton(
                   icon: Icon(
@@ -40,9 +44,15 @@ class TopicsScreen extends StatelessWidget {
             body: GridView.count(
               primary: false,
               padding: const EdgeInsets.all(20.0),
-              crossAxisSpacing: 10.0,
-              crossAxisCount: 2,
-              children: topics.map((topic) => TopicItem(topic: topic)).toList(),
+              crossAxisSpacing: 20.0,
+              mainAxisSpacing: 20.0,
+              crossAxisCount: 1,
+              children: topics.map((topic) {
+                return SizedBox(
+                  height: 250,
+                  child: TopicItem(topic: topic),
+                );
+              }).toList(),
             ),
             bottomNavigationBar: const BottomNavBar(),
           );

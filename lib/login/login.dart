@@ -8,6 +8,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black87,
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(30),
@@ -15,19 +16,18 @@ class LoginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Custom App Logo
               Image.asset(
                 'assets/appicon.png',
                 width: 120,
                 height: 120,
               ),
               const SizedBox(height: 20),
-              // App Name
               const Text(
                 "English Vocab Builder",
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 26,
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
               const SizedBox(height: 40),
@@ -35,14 +35,14 @@ class LoginScreen extends StatelessWidget {
                 icon: FontAwesomeIcons.userNinja,
                 text: 'Continue as Guest',
                 loginMethod: AuthService().anonLogin,
-                color: Colors.purple,
+                color: Colors.purple.shade700,
               ),
               const SizedBox(height: 20),
               LoginButton(
                 icon: FontAwesomeIcons.google,
                 text: 'Sign in with Google',
                 loginMethod: AuthService().googleLogin,
-                color: Colors.blue,
+                color: Colors.blue.shade700,
               ),
             ],
           ),
@@ -71,16 +71,24 @@ class LoginButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton.icon(
-        icon: Icon(icon, color: Colors.white, size: 20),
+        icon: Icon(icon, color: Colors.white, size: 22),
         style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(vertical: 15),
           backgroundColor: color,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(12),
           ),
+          elevation: 5,
         ),
         onPressed: loginMethod,
-        label: Text(text, textAlign: TextAlign.center),
+        label: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }

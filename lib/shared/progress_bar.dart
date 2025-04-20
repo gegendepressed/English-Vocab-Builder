@@ -9,36 +9,34 @@ class AnimatedProgressbar extends StatelessWidget {
   const AnimatedProgressbar({
     super.key,
     required this.value,
-    this.height = 12,
+    this.height = 10,
   });
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints box) {
+        final clampedValue = _clamp(value);
+
         return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          width: box.maxWidth,
-          child: Stack(
-            children: [
-              Container(
-                height: height,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
-                  borderRadius: BorderRadius.circular(height),
+          height: height,
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
+            borderRadius: BorderRadius.circular(height),
+          ),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeOutCubic,
+              width: box.maxWidth * clampedValue,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(height),
+                gradient: LinearGradient(
+                  colors: _generateGradient(clampedValue),
                 ),
               ),
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 800),
-                curve: Curves.easeOutCubic,
-                height: height,
-                width: box.maxWidth * _clamp(value),
-                decoration: BoxDecoration(
-                  color: _generateColor(value),
-                  borderRadius: BorderRadius.circular(height),
-                ),
-              ),
-            ],
+            ),
           ),
         );
       },
@@ -51,10 +49,14 @@ class AnimatedProgressbar extends StatelessWidget {
     return val;
   }
 
-  Color _generateColor(double val) {
-    final int green = (val * 255).toInt().clamp(0, 255);
-    final int red = (255 - green).clamp(0, 255);
-    return Colors.deepOrange.withGreen(green).withRed(red);
+  List<Color> _generateGradient(double value) {
+    if (value < 0.3) {
+      return [Colors.redAccent, Colors.orange];
+    } else if (value < 0.7) {
+      return [Colors.orangeAccent, Colors.amber];
+    } else {
+      return [Colors.lightGreenAccent, Colors.green];
+    }
   }
 }
 
@@ -67,17 +69,17 @@ class TopicProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     final report = Provider.of<Report>(context);
     final progress = _calculateProgress(topic, report);
+    final completed = report.topics[topic.id]?.length ?? 0;
+    final total = topic.quizzes.length;
 
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 8),
-          child: Text(
-            '${report.topics[topic.id]?.length ?? 0} / ${topic.quizzes.length}',
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall
-                ?.copyWith(color: Colors.grey),
+        Text(
+          '$completed / $total',
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: Colors.grey[600],
+            fontWeight: FontWeight.w500,
           ),
         ),
         const SizedBox(width: 10),

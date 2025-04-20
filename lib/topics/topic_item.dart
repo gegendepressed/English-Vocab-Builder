@@ -22,33 +22,40 @@ class TopicItem extends StatelessWidget {
             );
           },
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(
                 flex: 3,
                 child: SizedBox(
                   child: Image.asset(
                     'assets/covers/${topic.img}',
-                    fit: BoxFit.contain,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                child: Align(
+                  alignment: Alignment.center,
                   child: Text(
                     topic.title,
                     style: const TextStyle(
-                      height: 1.5,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
+                      height: 1.2,
                     ),
-                    overflow: TextOverflow.fade,
+                    overflow: TextOverflow.ellipsis,
                     softWrap: false,
                   ),
                 ),
               ),
-              Flexible(child: TopicProgress(topic: topic)),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: TopicProgress(topic: topic),
+                ),
+              ),
             ],
           ),
         ),
@@ -66,21 +73,29 @@ class TopicScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black87,
       ),
-      body: ListView(children: [
-        Hero(
-          tag: topic.img,
-          child: Image.asset('assets/covers/${topic.img}',
-              width: MediaQuery.of(context).size.width),
-        ),
-        Text(
-          topic.title,
-          style: const TextStyle(
-              height: 2, fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        QuizList(topic: topic)
-      ]),
+      body: ListView(
+        children: [
+          Hero(
+            tag: topic.img,
+            child: Image.asset('assets/covers/${topic.img}',
+                width: MediaQuery.of(context).size.width),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                topic.title,
+                style: const TextStyle(
+                    height: 1.5, fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          QuizList(topic: topic),
+        ],
+      ),
     );
   }
 }
