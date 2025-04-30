@@ -34,19 +34,19 @@ The app uses:
 ![Sign-In Screen](https://postimg.cc/XGLhyF58/image.png)
 
 ### Home Screen
-![Home Screen](https://postimg.cc/KKwh8tng/image.png)
+![Home Screen](https://i.postimg.cc/85PpwHcw/image.png)
 
 ### Quiz Interface
-![Quiz Interface](https://postimg.cc/hf1n1zqH/image.png)
+![Quiz Interface](https://i.postimg.cc/rFvpcxZF/image.png)
 
 ### Quiz Topic Drawer
 ![Quiz Topic Drawer](https://i.postimg.cc/1zLxVr6f/image.png)
 
 ### About Screen
-![About Page](https://postimg.cc/HcZZkzww/image.png)
+![About Page](https://i.postimg.cc/kG9kwhDp/Whats-App-Image-2025-04-30-at-8-56-07-PM.jpg)
 
 ### Settings or Profile Page
-![Profile Page](https://postimg.cc/14W2mGsR/image.png)
+![Profile Page](https://i.postimg.cc/Wbjv78yZ/image.png)
 
 ## Contributions
 
