@@ -31,22 +31,22 @@ The app uses:
 
 ## Screenshots
 ### Sign-In Screen
-![Sign-In Screen](https://postimg.cc/XGLhyF58)
+![Sign-In Screen](https://postimg.cc/XGLhyF58/image.png)
 
 ### Home Screen
-![Home Screen](https://postimg.cc/KKwh8tng)
+![Home Screen](https://postimg.cc/KKwh8tng/image.png)
 
 ### Quiz Interface
-![Quiz Interface](https://postimg.cc/hf1n1zqH)
+![Quiz Interface](https://postimg.cc/hf1n1zqH/image.png)
 
 ### Quiz Topic Drawer
-![Quiz Topic Drawer](https://postimg.cc/xkypWH62)
+![Quiz Topic Drawer](https://i.postimg.cc/1zLxVr6f/image.png)
 
 ### About Screen
-![About Page](https://postimg.cc/HcZZkzww)
+![About Page](https://postimg.cc/HcZZkzww/image.png)
 
 ### Settings or Profile Page
-![Profile Page](https://postimg.cc/14W2mGsR)
+![Profile Page](https://postimg.cc/14W2mGsR/image.png)
 
 ## Contributions
 
