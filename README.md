@@ -31,7 +31,7 @@ The app uses:
 
 ## Screenshots
 ### Sign-In Screen
-![Sign-In Screen](https://postimg.cc/XGLhyF58/image.png)
+![Sign-In Screen](https://i.postimg.cc/Q8HxB6Lx/image.png)
 
 ### Home Screen
 ![Home Screen](https://i.postimg.cc/85PpwHcw/image.png)
